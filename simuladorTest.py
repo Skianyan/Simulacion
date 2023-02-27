@@ -11,35 +11,35 @@ import csv
 import sys
 import argparse
 import numpy as np
-from operaciones import Aleatorios
-
+from math import aleatorios
 class Verificar(object):
-        self.precio = precio
-        self.archivo = archivo
-        self.cantidad = cantidad
-        for key, value in kwargs.items():
-            if key in ('-a', 'dminima'):
-                if float(value) <= 0:
-                    print("La demanda minima no puede ser negativa")
-                    sys.exit(2)
-                self.dminima = float(value)
-            elif key in ('-b', 'dmaxima'):
-                if float(value) <= 0:
-                    print("La demanda maxima no puede ser negativa")
-                    sys.exit(2)
-                self.dmaxima = float(value)
-            elif key in ('-p', 'precio'):
-                if float(value) <= 0:
-                    print("El precio debe ser un numero positivo")
-                    sys.exit(2)
-                self.parametro_t = float(value)
-            elif key in ('-n', '--cantidad'):
-                if int(value) <= 0:
-                    print("La cantidad debe ser un numero positivo")
-                    sys.exit(2)
-                self.cantidad = int(value)
-            elif key in ('-f', '--archivo'):
-                self.decimales = int(value)
+    self.precio = precio
+    self.archivo = archivo
+    self.cantidad = cantidad
+    for key, value in kwargs.items():
+        if key in ('-a', 'dminima'):
+            if float(value) <= 0:
+                print("La demanda minima no puede ser negativa")
+                sys.exit(2)
+            self.dminima = float(value)
+        elif key in ('-b', 'dmaxima'):
+            if float(value) <= 0:
+                print("La demanda maxima no puede ser negativa")
+                sys.exit(2)
+            self.dmaxima = float(value)
+        elif key in ('-p', 'precio'):
+            if float(value) <= 0:
+                print("El precio debe ser un numero positivo")
+                sys.exit(2)
+            self.parametro_t = float(value)
+        elif key in ('-n', '--cantidad'):
+            if int(value) <= 0:
+                print("La cantidad debe ser un numero positivo")
+                sys.exit(2)
+            self.cantidad = int(value)
+        elif key in ('-f', '--archivo'):
+            self.decimales = int(value)
+
 
 class Utilidad(Verificar):
     def __init__(self, *args, **kwargs):
@@ -59,7 +59,7 @@ class Utilidad(Verificar):
     def simular(self):
         aleatorios = Aleatorios(self.dminima, self.dmaxima, self.cantidad)
         demanda = aleatorios.intervalo()
-        ingreso = [round(self.precio * j,2) for j in demanda]
+        ingreso = [round(self.precio * j, 2) for j in demanda]
         self.crear_archivo(ingreso)
 
 
@@ -74,6 +74,7 @@ def main(**kwargs):
     decimales = 2
     valores = Utilidad(precio, archivo, cantidad, decimales, **kwargs)
     valores.simular()
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

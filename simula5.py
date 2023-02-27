@@ -78,7 +78,6 @@ class utilidad(verificar):
 
 
 def main(**kwargs):
-
     precio = 60 # precio
     archivo = "salida1.csv" #nombre de salida
     cantidad = 50 # cantidad de numeros aleatorios
