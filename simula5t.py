@@ -12,6 +12,7 @@ import sys
 import argparse
 from operaciones import Aleatorios
 
+
 class Verificar(object):
     def __init__(self, precio, archivo, cantidad, **kwargs):
         self.precio = precio
