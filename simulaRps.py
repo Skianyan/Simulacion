@@ -4,7 +4,7 @@
 # Ejemplo de Generador de numeros aleatorios
 #
 # Ricardo Haro Calvo
-# Feb 14, 2023
+# Feb 27, 2023
 # ricardo.AT.haroware.DOT.com
 #
 
