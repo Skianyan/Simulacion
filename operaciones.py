@@ -53,3 +53,24 @@ class withNumpy:
         self.bandera = 1
         # Valor del modulo para el generador
         self.modulo = 2 ** 31
+
+
+class Contra:
+    def __init__(self,parametro_a, modulo, semilla, cantidad):
+        # Valores para utilizar el generador de aleatorios
+        self.parametro.a = parametro_a
+        self.modulo = modulo
+        # Semilla para crear los aleatorios
+        self.semilla = semilla
+        # Número de aleatorios que se van a ocupar
+        self.cantidad = cantidad
+
+    def generar(self):
+        #Se crean al arreglo que genera los valores aleatorios
+        aleatorios = [self.semilla]
+        for i in range(self.cantidad + 1):
+            temp = (self.parametro_a * aleatorios[i-1]) % self.modulo
+            aleatorios.append(temp)
+        aleatorios.pop(0)
+        aleatorios = [valor / self.modulo for valor in aleatorios]
+        return aleatorios

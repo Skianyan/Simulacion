@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Ejemplo de Generador de numeros aleatorios
+# Juego de Piedra, Papel o Tijera
 #
 # Ricardo Haro Calvo
 # Feb 27, 2023

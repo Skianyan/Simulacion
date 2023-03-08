@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
+    id INTEGER PRIMARY KEY ,
+    nombre TEXT NOT NULL ,
+    correo TEXT NOT NULL ,
+    contra TEXT NOT NULL ,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
