@@ -16,5 +16,11 @@ with open('schema.sql') as f:
     connection.executescript(f.read())
 
 cur = connection.cursor()
-cur.execute("INSERT INTO usuarios(nombre, correo, contra) VALUES (?,?,?)"),
-            ('Juan Perez', 'jperez@ite.edu.mx', '11CC6B632C292D')
+cur.execute("INSERT INTO users(nombre, correo, contra) VALUES (?,?,?)",
+            ('Juan Perez', 'jperez@ite.edu.mx', '11CC6B632C292D'),
+            )
+cur.execute("INSERT INTO users(nombre, correo, contra) VALUES (?,?,?)",
+            ('Maria Petronila', 'mperez@ite.edu.mx', 'admin1234'),
+            )
+connection.commit()
+connection.close()

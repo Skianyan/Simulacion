@@ -63,15 +63,14 @@ class Encriptar(Parametros):
             decimal = int(decimal / 16)
         return hexadecimal
     def encriptar(self):
-        #se crea lo que será la nueva contraseña
+        #nueva contrasenia
         palabra = ''
         inicio = Contra(self.parametro_a, self.modulo, self.semilla, len(self.contrasenia))
         valores_aleatorios = inicio.generar()
         #se multiplica los valores aleatorio por los valores ASCII de cada letra
         for i in range(len(self.contrasenia)):
-            caracter = self.contrasenia(i)
-            asci = ord(caracter)
-            termino = self.decimalhexadecimal(math.floor(asci * valores_aleatorios[i]))
+            caracter_en_ascii = self.contrasenia(i)
+            termino = self.decimalhexadecimal(math.floor(caracter_en_ascii * valores_aleatorios[i]))
             palabra += termino
         return palabra
 def main(**kwargs):
