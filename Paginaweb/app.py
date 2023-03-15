@@ -10,7 +10,7 @@
 import sqlite3
 from flask import Flask, url_for, render_template, request
 
-from Paginaweb.templates.acceso import Contra
+from Paginaweb.acceso import Contra
 
 app = Flask(__name__)
 
