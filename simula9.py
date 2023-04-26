@@ -89,16 +89,64 @@ class App(tk.Tk):
         suma_vocales = self.contabiliza()
         meses_num = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
         meses = np.array(['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                          'Julio', 'Agosto', 'Octubre', 'Noviembre', 'Diciembre'])
-        indices_al_azar = np.random.permutation(meses_num)
+                          'Julio', 'Agosto','Septiembre', 'Octubre', 'Noviembre', 'Diciembre'])
+        indices_al_azar = np.random.permutation(len(meses_num))
         meses_num = meses_num[indices_al_azar]
         meses = meses[indices_al_azar]
+
         #Fecha de vigencia
         hoy = date.today()
         anio_vigencia = hoy.year + 3
         vigencia = meses[0] + '/' + str(anio_vigencia)
+
+        #CVV
+        valor_total = suma_vocales * anio_vigencia * meses_num[0]
+        cv1 = str(valor_total)
+        cv = cv1[-3:]
+        cvstr = str(cv)
+
+        #Tarjeta (tarea, completar tarjeta aleatoria)
+        # 1-4
+        num_tarj1 = '5' + cv1[:3]
+
+        # 5-8
+        t = 164976
+        a = (8 * t) + 3
+        #print('a= ' + str(a))
+        m = pow(2, 31)
+        #print('m= ' + str(m))
+        form = []
+        X = 620
+        i = 0
+        while i < 9:
+            form.insert(i, ((a * int(X)) % m))
+            X = form[i]
+            i += 1
+
+        #print(cvstr[0])
+        formnum2 = int(cvstr[0]) - 1
+        num2=form[formnum2]
+        num2str = str(num2)
+        num_tarj2 = num2str[:4]
+
+        # 9-12
+        #print(cvstr[1])
+        formnum3 = int(cvstr[1]) - 1
+        num3 = form[formnum3]
+        num3str = str(num3)
+        num_tarj3 = num3str[:4]
+
+        # 13-16
+        #print(cvstr[2])
+        formnum4 = int(cvstr[2]) - 1
+        num4 = form[formnum4]
+        num4str = str(num4)
+        num_tarj4 = num4str[:4]
+
         # Mostrar soluciones
         self.vigencia.set(vigencia)
+        self.ccv.set(cv)
+        self.tarjeta.set(num_tarj1 + " - " + num_tarj2 + " - " + num_tarj3 + " - " + num_tarj4)
 
     def contabiliza(self):
         suma = 0
@@ -106,7 +154,7 @@ class App(tk.Tk):
         nombre_persona = self.nombre.get() + self.appat.get() + self.apmat.get()
         for caracter in nombre_persona:
             if caracter in vocales:
-                sum += ord(caracter)
+                suma += ord(caracter)
         return suma
 
 if __name__ == '__main__':
