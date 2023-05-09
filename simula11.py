@@ -79,14 +79,6 @@ class App(tk.Tk):
         tk.Button(datos,text="Simular", command=lambda: self.simula()).pack(side=tk.LEFT,padx=10,pady=5)
         tk.Button(datos,text="Salir", command=lambda: self.quit()).pack(side=tk.LEFT,padx=10,pady=5)
 
-    @staticmethod
-    def lectura(combo):
-        switch = {
-            'Por años': 1,
-            'Por meses': 2,
-        }
-        return switch.get(combo, 'e')
-
     def valida(self):
         bandera = 0
         if not self.precio.get():
@@ -165,6 +157,14 @@ class App(tk.Tk):
         #if tipo_calculo == 2:
         return bandera
 
+    @staticmethod
+    def lectura(combo):
+        switch = {
+            'Por años': 1,
+            'Por meses': 2,
+        }
+        return switch.get(combo, 'e')
+
     def simula(self):
         if self.valida() == 16: #change to 18
             self.continuar()
@@ -204,7 +204,7 @@ class App(tk.Tk):
                     ingresos.append(j)
             # Calculo del costo
             costos_parciales = np.around(costos_estimados * ventas_estimadas, 2)
-            costos_promedios = np.average(costos_parciales + self.costo_fijo.get(), 2)
+            costos_promedios = self.costo_fijo.get() + np.average(costos_parciales, 2)
             costos = []
             for i in costos_promedios:
                 for j in i:
@@ -215,7 +215,7 @@ class App(tk.Tk):
             for i in utilidad_promedio:
                 for j in i:
                     utilidad.append(j)
-            figure = plt.Figure(figsize=(6, 5),dpi=100)
+            figure = plt.Figure(figsize=(6, 5), dpi=100)
             line = FigureCanvasTkAgg(figure, self)
             line.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH)
             plt.plot(ingresos, color='r', marker='o', label='Ingreso')
